@@ -10,9 +10,16 @@ module.exports = {
   included: function(app) {
     this._super.included(app);
 
+    var target = (parentAddon || app);
+    var options = target.options[this.name] || {};
+    var excludeCSS = options.excludeCSS || false;
+
     if (process.env.EMBER_CLI_FASTBOOT !== 'true') {
       app.import(path.join(this.treePaths.vendor, 'bootstrap-datepicker.js'));
-      app.import(path.join(this.treePaths.vendor, 'bootstrap-datepicker.css'));
+
+      if (!excludeCSS) {
+        app.import(path.join(this.treePaths.vendor, 'bootstrap-datepicker.css'));
+      }
     }
   },
 
