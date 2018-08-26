@@ -7,7 +7,7 @@ const Funnel = require('broccoli-funnel');
 module.exports = {
   name: 'ember-cli-bootstrap-datepicker',
 
-  included: function(app) {
+  included: function(app, parentAddon) {
     this._super.included(app);
 
     var target = (parentAddon || app);
